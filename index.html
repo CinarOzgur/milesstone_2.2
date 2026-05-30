@@ -1,182 +1,199 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>VIC Safety Hub - Entegre Sistem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIC Safety Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-900 text-gray-100 p-6 font-sans">
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
 
-    <div class="max-w-6xl mx-auto space-y-6">
+    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+            <span class="text-blue-400 font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i> VIC SAFETY HUB
+            </span>
+            <div class="hidden md:flex space-x-4 text-sm text-gray-400">
+                <a href="#" class="hover:text-white transition">Home</a>
+                <a href="#" class="text-blue-400 font-medium border-b-2 border-blue-400 pb-1">Analysis (Active)</a>
+                <a href="#" class="hover:text-white transition">Settings</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3 text-sm">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500 animate-pulse"></i>
+            <span class="text-gray-300 font-medium">James (Engineer)</span>
+            <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-xs font-bold text-white border border-gray-500">
+                JE
+            </div>
+        </div>
+    </nav>
 
-        <!-- LEVEL 1: STRATEJİK ÖZET (DOM Değişkenleri Bağlı) -->
-        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-            <h2 class="text-xs text-purple-400 font-bold mb-3">LEVEL 1: STRATEGIC SUMMARY (Case Baselines)</h2>
+    <main class="max-w-5xl mx-auto p-6 space-y-6 flex-1 w-full">
+        
+        <div class="text-xs text-gray-400 flex items-center gap-2">
+            <i class="fa-solid fa-thumbtack text-rose-500"></i>
+            <span>Dashboard</span> &gt; <span>Analytics</span> &gt; <span class="text-gray-200 font-medium">Environmental Factors</span>
+        </div>
+        
+        <section class="bg-gray-800/80 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-purple-400 font-bold mb-3 tracking-wider uppercase">LEVEL 1: STRATEGIC SUMMARY (Case Baselines)</h2>
             <div class="grid grid-cols-3 gap-4 text-center">
-                <div class="p-3 bg-gray-900 rounded border border-gray-700">
-                    <div id="metric-fatalities" class="text-xl font-bold text-rose-400">+13% Surge</div>
-                    <div class="text-xs text-gray-400">Regional Fatalities</div>
+                <div class="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+                    <div id="m-fatalities" class="text-2xl font-bold text-rose-400">+13% Surge</div>
+                    <div class="text-xs text-gray-400 mt-1">Regional Fatalities</div>
                 </div>
-                <div class="p-3 bg-gray-900 rounded border border-gray-700">
-                    <div id="metric-distraction" class="text-xl font-bold text-amber-400">16% Link</div>
-                    <div class="text-xs text-gray-400">Smartphone Distraction</div>
+                <div class="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+                    <div class="text-2xl font-bold text-amber-400">16% Link</div>
+                    <div class="text-xs text-gray-400 mt-1">Smartphone Distraction</div>
                 </div>
-                <div class="p-3 bg-gray-900 rounded border border-gray-700">
-                    <div id="metric-violations" class="text-xl font-bold text-blue-400">2/3 Cases</div>
-                    <div class="text-xs text-gray-400">Single Rule Violations</div>
+                <div class="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+                    <div class="text-2xl font-bold text-blue-400">2/3 Cases</div>
+                    <div class="text-xs text-gray-400 mt-1">Single Rule Violations</div>
                 </div>
             </div>
         </section>
 
-        <!-- LEVEL 2: İNTERAKTİF FİLTRE PANELİ (Inputs) -->
-        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-            <h2 class="text-xs text-blue-400 font-bold mb-3">LEVEL 2: INTERACTIVE FILTER PANEL</h2>
-            <div class="grid grid-cols-3 gap-4">
+        <section class="bg-gray-800/80 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-blue-400 font-bold mb-3 tracking-wider uppercase">LEVEL 2: INTERACTIVE FILTER PANEL</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Weather</label>
-                    <select id="ui-weather" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                    <label class="block text-xs text-gray-400 mb-1">🌧️ Weather</label>
+                    <select id="filter-weather" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm text-white focus:border-blue-500 outline-none">
                         <option value="Raining">Raining</option>
                         <option value="Clear">Clear</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Light</label>
-                    <select id="ui-light" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                    <label class="block text-xs text-gray-400 mb-1">💡 Light</label>
+                    <select id="filter-light" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm text-white focus:border-blue-500 outline-none">
                         <option value="Dark">Dark</option>
                         <option value="Daylight">Daylight</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Severity</label>
-                    <select id="ui-severity" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                    <label class="block text-xs text-gray-400 mb-1">⚠️ Severity</label>
+                    <select id="filter-severity" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm text-white focus:border-blue-500 outline-none">
                         <option value="Severe/Fatal">Severe/Fatal</option>
                         <option value="Minor">Minor</option>
                     </select>
                 </div>
             </div>
             <div class="mt-4 flex justify-end">
-                <!-- Buton JavaScript fonksiyonunu tetikler -->
-                <button onclick="fetchAnomalyData()" class="bg-amber-500 text-gray-900 text-xs font-bold py-2 px-4 rounded hover:bg-amber-600 uppercase">
-                    ⚡ FILTER ANOMALIES
+                <button onclick="sendFilterRequest()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 text-xs font-bold py-2 px-5 rounded tracking-wide uppercase transition duration-200">
+                    ⚡ Filter Anomalies
                 </button>
             </div>
         </section>
 
-        <!-- LEVEL 3: TÜRETİLMİŞ ANOMALİ SONUÇLARI (Dinamik Tablo) -->
-        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
-            <h2 class="text-xs text-emerald-400 font-bold mb-3">LEVEL 3: DERIVED ANOMALY RESULTS</h2>
-            <table class="w-full text-left text-sm">
-                <thead>
-                    <tr class="border-b border-gray-700 text-xs text-gray-400 uppercase">
-                        <th class="p-2">Rank</th>
-                        <th class="p-2">LGA</th>
-                        <th class="p-2 text-center">Crash Count</th>
-                        <th class="p-2">Infrastructure Deficit</th>
-                        <th class="p-2 text-center">Status</th>
-                    </tr>
-                </thead>
-                <tbody id="dynamic-rows">
-                    <!-- JavaScript burayı dolduracak -->
-                </tbody>
-            </table>
-            <div class="mt-4 text-right text-xs text-gray-400">
-                Active Records: <span id="active-count" class="text-blue-400 font-bold">0</span> Regional Anomalies
+        <section class="bg-gray-800/80 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-emerald-400 font-bold mb-3 tracking-wider uppercase">LEVEL 3: DERIVED ANOMALY RESULTS (Locations Exceeding Baseline)</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-700 text-xs text-gray-400 uppercase">
+                            <th class="p-3">Rank</th>
+                            <th class="p-3">Local Government Area</th>
+                            <th class="p-3 text-center">Crash Count</th>
+                            <th class="p-3">Infrastructure Deficit</th>
+                            <th class="p-3 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+                <div class="flex items-center space-x-1">
+                    <button class="px-2.5 py-1 bg-gray-900 border border-gray-700 rounded hover:text-white disabled:opacity-40" disabled>&laquo; Prev</button>
+                    <button class="px-2.5 py-1 bg-blue-500/20 border border-blue-500/50 text-blue-400 rounded font-bold">(01)</button>
+                    <button class="px-2.5 py-1 bg-gray-900 border border-gray-700 rounded hover:text-white transition">02</button>
+                    <button class="px-2.5 py-1 bg-gray-900 border border-gray-700 rounded hover:text-white transition">03</button>
+                    <button class="px-2.5 py-1 bg-gray-900 border border-gray-700 rounded hover:text-white transition">Next &raquo;</button>
+                </div>
+                <div class="font-medium text-gray-300">
+                    Active Records: <span id="anomaly-count" class="text-blue-400 font-bold">0</span> Regional Anomalies
+                </div>
             </div>
         </section>
+    </main>
 
-    </div>
+    <footer class="bg-gray-800/40 border-t border-gray-800 py-3 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-5xl mx-auto flex justify-center items-center gap-2">
+            <i class="fa-regular fa-file-lines text-gray-600"></i>
+            <span>Data Sources: Datavic Open Data Portal & TAC Statistics</span>
+        </div>
+    </footer>
 
-    <!-- MANTIK KÖPRÜSÜ (JavaScript) -->
     <script>
-        // Veritabanından (API) gelen cevabı simüle eden Mock Data yapısı
-        const databaseMock = [
-            { lga: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 4, deficit: "[Rain + No Street Lights]" },
-            { lga: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 3, deficit: "[Wet Surf. + High Speed]" },
-            { lga: "Southeast Melbourne", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 1, deficit: "[No Structural Flaws]" },
-            { lga: "Mildura", weather: "Clear", light: "Daylight", severity: "Minor", count: 0, deficit: "[Optimal]" }
-        ];
+        async function sendFilterRequest() {
+            const weather = document.getElementById('filter-weather').value;
+            const light = document.getElementById('filter-light').value;
+            const severity = document.getElementById('filter-severity').value;
 
-        function fetchAnomalyData() {
-            // 1. Level 2'deki girdi değerlerini yakala
-            const selectedWeather = document.getElementById('ui-weather').value;
-            const selectedLight = document.getElementById('ui-light').value;
-            const selectedSeverity = document.getElementById('ui-severity').value;
+            // Backend API'sine istek atma
+            const response = await fetch(`/api/anomalies?weather=${weather}&light=${light}&severity=${severity}`);
+            const data = await response.json();
 
-            // 2. Veriyi filtrele (SQL WHERE mantığı)
-            const filteredData = databaseMock.filter(item => 
-                item.weather === selectedWeather && 
-                item.light === selectedLight && 
-                item.severity === selectedSeverity
-            );
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = "";
 
-            // 3. Tabloyu Temizle ve Yeniden İnşa Et (Level 3)
-            const tbody = document.getElementById('dynamic-rows');
-            tbody.innerHTML = ""; 
+            const aboveBaseline = data.filter(r => r.crash_count > 2);
+            const belowBaseline = data.filter(r => r.crash_count <= 2);
 
-            let anomaliesAboveBaseline = 0;
             let rank = 1;
 
-            // Çizginin üstü (Eşiği aşanlar > 2) ve altı için iki aşamalı döngü
-            const aboveThreshold = filteredData.filter(d => d.count > 2).sort((a,b) => b.count - a.count);
-            const belowThreshold = filteredData.filter(d => d.count <= 2);
-
-            // Üst kısımları yazdır
-            aboveThreshold.forEach(item => {
-                anomaliesAboveBaseline++;
-                const statusBadge = item.count >= 4 ? 
-                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-xs px-2 py-0.5 rounded font-bold">🚨 CRITICAL</span>` : 
-                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs px-2 py-0.5 rounded font-bold">⚠️ WARNING</span>`;
+            // Anomaliler (Eşik Üstü)
+            aboveBaseline.forEach(row => {
+                const badge = row.crash_count >= 4 ? 
+                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-xs font-bold px-2 py-0.5 rounded">🚨 CRITICAL</span>` :
+                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold px-2 py-0.5 rounded">⚠️ WARNING</span>`;
 
                 tbody.innerHTML += `
-                    <tr class="border-b border-gray-800">
-                        <td class="p-2 font-mono text-gray-400">#0${rank++}</td>
-                        <td class="p-2">${item.lga}</td>
-                        <td class="p-2 text-center text-rose-400 font-bold">${item.count}</td>
-                        <td class="p-2 text-gray-300">${item.deficit}</td>
-                        <td class="p-2 text-center">${statusBadge}</td>
+                    <tr class="border-b border-gray-800/50 hover:bg-gray-700/20 transition">
+                        <td class="p-3 font-mono text-gray-400">#0${rank++}</td>
+                        <td class="p-3 font-medium">${row.lga_name}</td>
+                        <td class="p-3 text-center font-bold text-rose-400">${row.crash_count}</td>
+                        <td class="p-3 text-gray-300">${row.infrastructure_deficit}</td>
+                        <td class="p-3 text-center">${badge}</td>
                     </tr>
                 `;
             });
 
-            // GÖRSELDEKİ EŞİK ÇİZGİSİNİ KODLA EKLE (Crash Threshold Line)
-            if(filteredData.length > 0) {
+            // MAKRO EŞİK ÇİZGİSİ
+            if(data.length > 0) {
                 tbody.innerHTML += `
-                    <tr class="bg-gray-800/80 border-y border-dashed border-rose-500/50">
-                        <td colspan="5" class="p-2 text-xs font-bold text-rose-400">
-                            🔴 Crash Threshold Line (Macro State Baseline Average: 2.0)
+                    <tr class="bg-gray-900/60 border-y-2 border-dashed border-rose-500/30">
+                        <td colspan="5" class="p-2.5 text-xs font-semibold text-rose-400">
+                            <span class="inline-block w-2 h-2 bg-rose-500 rounded-full mr-1.5 animate-pulse"></span>
+                            Crash Threshold Line (Macro State Baseline Average: 2.0)
                         </td>
                     </tr>
                 `;
             }
 
-            // Alt kısımları yazdır (Safe Alanı)
-            belowThreshold.forEach(item => {
+            // Güvenli Bölgeler (Eşik Altı)
+            belowBaseline.forEach(row => {
                 tbody.innerHTML += `
-                    <tr>
-                        <td class="p-2 font-mono text-gray-500">--</td>
-                        <td class="p-2 text-gray-400">${item.lga}</td>
-                        <td class="p-2 text-center text-gray-400">${item.count}</td>
-                        <td class="p-2 text-gray-500">${item.deficit}</td>
-                        <td class="p-2 text-center">
-                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded font-bold">✅ SAFE</span>
+                    <tr class="hover:bg-gray-700/20 transition">
+                        <td class="p-3 font-mono text-gray-500">--</td>
+                        <td class="p-3 text-gray-400">${row.lga_name}</td>
+                        <td class="p-3 text-center text-gray-400">${row.crash_count}</td>
+                        <td class="p-3 text-gray-500">${row.infrastructure_deficit}</td>
+                        <td class="p-3 text-center">
+                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold px-2 py-0.5 rounded">✅ SAFE</span>
                         </td>
                     </tr>
                 `;
             });
 
-            // 4. İstatistikleri ve Level 1'i güncelle
-            document.getElementById('active-count').innerText = anomaliesAboveBaseline;
-            
-            if(anomaliesAboveBaseline > 0) {
-                document.getElementById('metric-fatalities').innerText = `+${10 + anomaliesAboveBaseline}% Surge`;
-            } else {
-                document.getElementById('metric-fatalities').innerText = `0% Change`;
-            }
+            // Alt Özeti ve Üst Özeti Dinamik Değiştirme
+            document.getElementById('anomaly-count').innerText = aboveBaseline.length;
+            document.getElementById('m-fatalities').innerText = aboveBaseline.length > 0 ? `+${11 + aboveBaseline.length}% Surge` : '0% Change';
         }
 
-        // Sayfa ilk açıldığında fonksiyonu bir kere çalıştır
-        window.onload = fetchAnomalyData;
+        window.onload = sendFilterRequest;
     </script>
 </body>
 </html>
