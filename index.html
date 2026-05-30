@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIC Safety Hub - Environmental Factors</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS Kütüphanesi -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icon Set -->
+    <!-- FontAwesome İkon Seti -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Görseldeki terminal havasını destekleyen özel yazı tipi entegrasyonu */
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-mono { font-family: 'JetBrains+Mono', monospace; }
@@ -16,107 +17,118 @@
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col tracking-wide selection:bg-amber-500 selection:text-gray-900">
 
-    <!-- 1. TOP NAVIGATION BAR & USER AREA -->
+    <!-- 1. ÜST NAVİGASYON MENÜSÜ & USER ALANI -->
     <nav class="bg-gray-900 border-b border-gray-800 px-6 py-3 flex justify-between items-center sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
         <div class="flex items-center space-x-8">
-            <!-- Logo -->
+            <!-- Logo Bölümü -->
             <span class="text-blue-400 font-bold text-base tracking-wider flex items-center gap-2 font-mono">
                 [<i class="fa-solid fa-shield-halved text-sm animate-pulse"></i> VIC SAFETY HUB]
             </span>
-            <!-- Menu Links -->
+            <!-- Menü Linkleri -->
             <div class="hidden md:flex space-x-6 text-xs uppercase font-medium tracking-widest">
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Home</a>
                 <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-500 pb-4 pt-1 mt-3">[Analysis (Active)]</a>
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Settings</a>
             </div>
         </div>
-        <!-- User Profile Area -->
+        <!-- Kullanıcı (User) Alanı -->
         <div class="flex items-center space-x-4 text-xs font-mono">
-            <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+            <i class="fa-solid fa-triangle-exclamation text-amber-500 animate-bounce"></i>
             <span class="text-gray-300">James (Engineer)</span>
             <span class="text-gray-600">|</span>
             <a href="#" class="text-gray-400 hover:text-rose-400 transition"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </nav>
 
-    <!-- MAIN BODY CONTAINER -->
+    <!-- ANA GÖVDE KONTEYNERİ -->
     <main class="max-w-5xl mx-auto p-4 md:p-6 space-y-6 flex-1 w-full">
         
-        <!-- Dashboard Breadcrumbs -->
+        <!-- Dashboard Navigasyon İpucu (Breadcrumbs) -->
         <div class="text-[11px] font-mono text-gray-500 flex items-center gap-2 uppercase tracking-wider">
             <i class="fa-solid fa-thumbtack text-rose-500 text-xs"></i>
             <span>Dashboard</span> <span class="text-gray-700">&gt;</span> <span>Analytics</span> <span class="text-gray-700">&gt;</span> <span class="text-gray-300 font-bold">Environmental Factors</span>
         </div>
 
-        <!-- LEVEL 1: STRATEGIC SUMMARY -->
+        <!-- ========================================================== -->
+        <!-- LEVEL 1: STRATEGIC SUMMARY (Case Baselines)                -->
+        <!-- ========================================================== -->
         <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-purple-500">
             <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-regular fa-file-lines"></i> LEVEL 1: STRATEGIC SUMMARY (Case Baselines)
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80">
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80 transition hover:border-purple-500/30">
                     <div id="m-fatalities" class="text-2xl font-bold text-rose-400 font-mono tracking-tight">+13% Surge</div>
                     <div class="text-xs text-gray-400 mt-1 font-medium">Regional Fatalities</div>
                 </div>
-                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80">
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80 transition hover:border-purple-500/30">
                     <div class="text-2xl font-bold text-amber-400 font-mono tracking-tight">16% Link</div>
                     <div class="text-xs text-gray-400 mt-1 font-medium">Smartphone Distraction</div>
                 </div>
-                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80">
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800/80 transition hover:border-purple-500/30">
                     <div class="text-2xl font-bold text-blue-400 font-mono tracking-tight">2/3 Cases</div>
                     <div class="text-xs text-gray-400 mt-1 font-medium">Single Rule Violations</div>
                 </div>
             </div>
         </section>
 
-        <!-- LEVEL 2: INTERACTIVE FILTER PANEL -->
+        <!-- ========================================================== -->
+        <!-- LEVEL 2: INTERACTIVE FILTER PANEL                          -->
+        <!-- ========================================================== -->
         <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-blue-500">
             <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
-                <i class="fa-solid fa-magnifying-glass text-xs"></i> LEVEL 2: INTERACTIVE FILTER PANEL
+                <i class="fa-solid fa-magnifying-glass text-xs"></i> LEVEL 2: INTERACTIVE FILTER PANEL (User Control & Freedom)
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                <!-- LGA -->
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">📍 LGA:</label>
-                    <select id="filter-lga" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <select id="filter-lga" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="all">[All Victoria]</option>
                     </select>
                 </div>
+                <!-- Weather -->
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">🌧️ Weather:</label>
-                    <select id="filter-weather" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <select id="filter-weather" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="Raining">[Raining]</option>
                         <option value="Clear">[Clear]</option>
                     </select>
                 </div>
+                <!-- Surface -->
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">🗺️ Surface:</label>
-                    <select id="filter-surface" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <select id="filter-surface" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="Wet">[Wet]</option>
                         <option value="Dry">[Dry]</option>
                     </select>
                 </div>
+                <!-- Light -->
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">💡 Light:</label>
-                    <select id="filter-light" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <select id="filter-light" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="Dark">[Dark]</option>
                         <option value="Daylight">[Daylight]</option>
                     </select>
                 </div>
+                <!-- Age -->
                 <div>
-                    <label class="block text-gray-400 mb-1.5 font-medium">👥 Age Group:</label>
-                    <select id="filter-age" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <label class="block text-gray-400 mb-1.5 font-medium">👥 Age:</label>
+                    <select id="filter-age" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="15-24">[15-24]</option>
                         <option value="25-64">[25-64]</option>
                     </select>
                 </div>
+                <!-- Severity -->
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">⚠️ Severity:</label>
-                    <select id="filter-severity" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none font-mono">
+                    <select id="filter-severity" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
                         <option value="Severe/Fatal">[Severe/Fatal]</option>
-                        <option value="Minor">[Minor Injury]</option>
+                        <option value="Minor">[Minor]</option>
                     </select>
                 </div>
             </div>
+            <!-- Filtre Butonu -->
             <div class="mt-5 flex justify-end">
                 <button onclick="runDynamicFilter()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 text-xs font-bold py-2.5 px-5 rounded flex items-center gap-2 tracking-widest transition duration-150 uppercase font-mono">
                     [ <i class="fa-solid fa-bolt-lightning text-[10px]"></i> FILTER ANOMALIES ]
@@ -124,10 +136,12 @@
             </div>
         </section>
 
-        <!-- LEVEL 3: DERIVED ANOMALY RESULTS -->
+        <!-- ========================================================== -->
+        <!-- LEVEL 3: DERIVED ANOMALY RESULTS                           -->
+        <!-- ========================================================== -->
         <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-emerald-500">
             <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
-                <i class="fa-solid fa-chart-simple"></i> LEVEL 3: DERIVED ANOMALY RESULTS
+                <i class="fa-solid fa-chart-simple"></i> LEVEL 3: DERIVED ANOMALY RESULTS (Locations Exceeding Baseline)
             </h2>
             
             <div class="overflow-x-auto rounded-lg border border-gray-800">
@@ -142,16 +156,16 @@
                         </tr>
                     </thead>
                     <tbody id="table-rows" class="divide-y divide-gray-800/40">
-                        <!-- Simulated Rows -->
+                        <!-- Veriler JavaScript/SQL havuzu tarafından dinamik basılacak -->
                     </tbody>
                 </table>
             </div>
 
-            <!-- PAGINATION AREA -->
+            <!-- ALTAKİ SAYFA DEĞİŞTİRME BÖLÜMÜ (Pagination Area) -->
             <div class="mt-5 pt-4 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-400">
                 <div class="flex items-center space-x-1.5">
                     <span class="text-gray-500 mr-1">Pages:</span>
-                    <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white disabled:opacity-30" disabled>&laquo; Prev</button>
+                    <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white disabled:opacity-30 disabled:hover:text-gray-500" disabled>&laquo; Prev</button>
                     <button class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/40 text-blue-400 rounded font-bold">(01)</button>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white transition">02</button>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white transition">03</button>
@@ -164,49 +178,55 @@
         </section>
     </main>
 
-    <!-- FOOTER AREA -->
+    <!-- FOOTER BÖLÜMÜ -->
     <footer class="bg-gray-950 border-t border-gray-900 py-4 text-center text-[11px] font-mono text-gray-500 mt-auto">
         <div class="max-w-5xl mx-auto flex justify-center items-center gap-2">
             <i class="fa-regular fa-file-code text-gray-700"></i>
-            <span>Data Sources: Datavic Open Data Portal & TAC Statistics</span>
+            <span>Data Sources: Datavic Open Data Portal & TAC Statistics (2024-2025)</span>
         </div>
     </footer>
 
+    <!-- ENTEGRE SQL SİMÜLASYONU & FİLTRE MANTIĞI -->
     <script>
+        // SQL tablonuza eklenecek verileri doğrudan buradaki listeye ekleyebilirsiniz.
+        // Sistem otomatik olarak yeni eklenen kayıtları algılayıp tabloya yerleştirir.
         const internalDatabaseMock = [
             { lga_name: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 4, deficit: "[Rain + No Street Lights]" },
             { lga_name: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 3, deficit: "[Wet Surf. + High Speed]" },
             { lga_name: "Southeast Melbourne", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 1, deficit: "[No Structural Flaws]" },
-            { lga_name: "Melbourne CBD", weather: "Clear", light: "Daylight", severity: "Minor", crash_count: 0, deficit: "[Optimal]" },
-            { lga_name: "Frankston City", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 5, deficit: "[Blackspot + Poor Visibility]" }
+            { lga_name: "Melbourne CBD", weather: "Clear", light: "Daylight", severity: "Minor", crash_count: 0, deficit: "[Optimal]" }
         ];
 
         function runDynamicFilter() {
+            // Level 2 Seçim Değerlerini Yakalama
             const activeWeather = document.getElementById('filter-weather').value;
             const activeLight = document.getElementById('filter-light').value;
             const activeSeverity = document.getElementById('filter-severity').value;
-            const tbody = document.getElementById('table-rows');
-            
-            tbody.innerHTML = "";
 
+            const tbody = document.getElementById('table-rows');
+            tbody.innerHTML = ""; // Tabloyu temizle
+
+            // SQL WHERE mantığı ile veriyi filtrele
             const matchData = internalDatabaseMock.filter(item => 
                 item.weather === activeWeather && 
                 item.light === activeLight && 
                 item.severity === activeSeverity
             );
 
-            const highRisk = matchData.filter(d => d.crash_count > 2.0).sort((a,b) => b.crash_count - a.crash_count);
+            // Eşik değerine (2.0) göre gruplama (Kritik vs Güvenli ayrımı)
+            const highRisk = matchData.filter(d => d.crash_count > 2.0).sort((a,b) => b.crash_count - a.count);
             const lowRisk = matchData.filter(d => d.crash_count <= 2.0);
 
             let rankIndex = 1;
 
+            // 1. Kısım: Eşik Üstü Anomaliler (Critical / Warning)
             highRisk.forEach(row => {
                 const statusHtml = row.crash_count >= 4 ? 
-                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">🚨 CRITICAL</span>` : 
-                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">⚠️ WARNING</span>`;
+                    `<span class="inline-flex items-center gap-1 bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">🚨 CRITICAL</span>` : 
+                    `<span class="inline-flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">⚠️ WARNING</span>`;
 
                 tbody.innerHTML += `
-                    <tr class="hover:bg-gray-800/20 transition">
+                    <tr class="hover:bg-gray-800/20 transition duration-150">
                         <td class="py-3 px-4 font-mono text-gray-500">#0${rankIndex++}</td>
                         <td class="py-3 px-4 font-medium text-gray-200">${row.lga_name}</td>
                         <td class="py-3 px-4 text-center font-mono font-bold text-rose-400">${row.crash_count}</td>
@@ -216,6 +236,7 @@
                 `;
             });
 
+            // 2. Kısım: DİNAMİK CRASH THRESHOLD LINE (Eşik Ayırıcı Çizgi)
             if(matchData.length > 0) {
                 tbody.innerHTML += `
                     <tr class="bg-gray-950 border-y border-dashed border-rose-500/40">
@@ -227,24 +248,27 @@
                 `;
             }
 
+            // 3. Kısım: Eşik Altı Alanlar (Safe)
             lowRisk.forEach(row => {
                 tbody.innerHTML += `
-                    <tr class="hover:bg-gray-800/20 transition">
+                    <tr class="hover:bg-gray-800/20 transition duration-150">
                         <td class="py-3 px-4 font-mono text-gray-600">--</td>
                         <td class="py-3 px-4 text-gray-400">${row.lga_name}</td>
                         <td class="py-3 px-4 text-center font-mono text-gray-500">${row.crash_count}</td>
                         <td class="py-3 px-4 text-gray-600 font-mono text-xs">${row.deficit}</td>
                         <td class="py-3 px-4 text-center">
-                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/10 text-[10px] font-bold px-2 py-0.5 rounded font-mono">✅ SAFE</span>
+                            <span class="inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/10 text-[10px] font-bold px-2 py-0.5 rounded font-mono">✅ SAFE</span>
                         </td>
                     </tr>
                 `;
             });
 
+            // Level 1 ve İstatistik Sayaç Panellerini Güncelleme
             document.getElementById('anomaly-badge-count').innerText = highRisk.length;
             document.getElementById('m-fatalities').innerText = highRisk.length > 0 ? `+${11 + highRisk.length}% Surge` : '0% Change';
         }
 
+        // Sayfa ilk kez yüklendiğinde filtreyi otomatik çalıştır
         window.onload = runDynamicFilter;
     </script>
 </body>
