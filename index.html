@@ -17,35 +17,26 @@
     <nav class="bg-gray-900 border-b border-gray-800 px-8 py-0 sticky top-0 z-50 backdrop-blur-md bg-opacity-90 font-mono">
         <div class="max-w-5xl mx-auto flex justify-between items-center h-16">
             
-            <div class="flex items-center space-x-12 text-sm tracking-[0.15em]">
-                <span class="text-blue-400 font-bold flex items-center gap-3 mr-4">
+            <div class="flex items-center space-x-16 text-sm tracking-[0.15em]">
+                <span class="text-blue-400 font-bold flex items-center gap-3">
                     [ <i class="fa-solid fa-shield-halved text-xs"></i> VIC SAFETY HUB ]
                 </span>
-                
-                <div id="nav-links" class="hidden md:flex items-center space-x-6 text-gray-400">
-                    
-                    <div class="relative flex flex-col justify-center h-16 px-2">
-                        <a href="#" onclick="switchMenu(this, 'HOME')" class="hover:text-white uppercase transition duration-150">Home</a>
-                        <div class="indicator absolute bottom-0 left-0 right-0 h-[3px] bg-blue-500 hidden"></div>
+                <div class="hidden md:flex items-center space-x-12 text-gray-400">
+                    <a href="#" class="hover:text-white uppercase transition duration-150">Home</a>
+                    <div class="relative flex flex-col justify-center h-16">
+                        <a href="#" class="text-blue-400 font-bold uppercase">[ANALYSIS (ACTIVE)]</a>
+                        <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-blue-500"></div>
                     </div>
-                    
-                    <div class="relative flex flex-col justify-center h-16 px-2">
-                        <a href="#" onclick="switchMenu(this, 'ANALYSIS (ACTIVE)')" class="text-blue-400 font-bold uppercase">[ANALYSIS (ACTIVE)]</a>
-                        <div class="indicator absolute bottom-0 left-0 right-0 h-[3px] bg-blue-500"></div>
-                    </div>
-                    
-                    <div class="relative flex flex-col justify-center h-16 px-2">
-                        <a href="#" onclick="switchMenu(this, 'SETTINGS')" class="hover:text-white uppercase transition duration-150">Settings</a>
-                        <div class="indicator absolute bottom-0 left-0 right-0 h-[3px] bg-blue-500 hidden"></div>
-                    </div>
-
+                    <a href="#" class="hover:text-white uppercase transition duration-150">Settings</a>
                 </div>
             </div>
             
             <div class="flex items-center space-x-4 text-xs tracking-wider">
                 <i class="fa-solid fa-triangle-exclamation text-amber-500 animate-bounce"></i>
                 <i class="fa-solid fa-envelope text-purple-400"></i>
-                <span class="text-gray-300 flex items-center gap-1.5"> James (Engineer) </span>
+                <span class="text-gray-300 flex items-center gap-1.5">
+                    James (Engineer)
+                </span>
                 <span class="text-gray-700">|</span>
                 <a href="#" class="text-gray-500 hover:text-rose-400 transition"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
@@ -56,7 +47,7 @@
         
         <div class="text-[11px] font-mono text-gray-500 flex items-center gap-2 uppercase tracking-wider">
             <i class="fa-solid fa-thumbtack text-rose-500 text-xs"></i>
-            <span>Dashboard</span> <span class="text-gray-700">&gt;</span> <span>Analytics</span> <span class="text-gray-700">&gt;</span> <span id="breadcrumb-current" class="text-gray-300 font-bold">Environmental Factors</span>
+            <span>Dashboard</span> <span class="text-gray-700">&gt;</span> <span>Analytics</span> <span class="text-gray-700">&gt;</span> <span class="text-gray-300 font-bold">Environmental Factors</span>
         </div>
 
         <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-purple-500">
@@ -79,7 +70,7 @@
             </div>
         </section>
 
-        <section id="filter-section" class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-blue-500">
+        <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-blue-500">
             <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-solid fa-magnifying-glass text-xs"></i> LEVEL 2: INTERACTIVE FILTER PANEL (User Control & Freedom)
             </h2>
@@ -133,7 +124,7 @@
             </div>
         </section>
 
-        <section id="results-section" class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-emerald-500">
+        <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-emerald-500">
             <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-solid fa-chart-simple"></i> LEVEL 3: DERIVED ANOMALY RESULTS (Locations Exceeding Baseline)
             </h2>
@@ -149,7 +140,8 @@
                             <th class="py-3 px-4 text-center">Status</th>
                         </tr>
                     </thead>
-                    <tbody id="table-rows" class="divide-y divide-gray-800/40"></tbody>
+                    <tbody id="table-rows" class="divide-y divide-gray-800/40">
+                        </tbody>
                 </table>
             </div>
 
@@ -177,42 +169,6 @@
     </footer>
 
     <script>
-        // Dynamic Menu Router Function
-        function switchMenu(clickedElement, menuName) {
-            // Get all menu container nodes
-            const linksContainer = document.getElementById('nav-links');
-            const navContainers = linksContainer.querySelectorAll('.relative');
-
-            navContainers.forEach(container => {
-                const link = container.querySelector('a');
-                const indicator = container.querySelector('.indicator');
-
-                // Clear formatting, revert back to plain text tracking style
-                link.className = "hover:text-white uppercase transition duration-150";
-                link.innerText = link.innerText.replace('[', '').replace(']', '').replace(' (ACTIVE)', '');
-                indicator.classList.add('hidden');
-            });
-
-            // Set clicked menu item to terminal active focus matrix
-            clickedElement.className = "text-blue-400 font-bold uppercase";
-            clickedElement.innerText = `[${menuName === 'ANALYSIS (ACTIVE)' ? menuName : menuName + ' (ACTIVE)'}]`;
-            
-            // Show underline indicator highlight
-            const parentContainer = clickedElement.parentElement;
-            parentContainer.querySelector('.indicator').classList.remove('hidden');
-
-            // Optional: Breadcrumb sync matrix based on selection
-            const breadcrumb = document.getElementById('breadcrumb-current');
-            if(menuName === 'HOME') {
-                breadcrumb.innerText = "System Overview";
-            } else if (menuName === 'SETTINGS') {
-                breadcrumb.innerText = "Control Matrix Configurations";
-            } else {
-                breadcrumb.innerText = "Environmental Factors";
-            }
-        }
-
-        // Mock database data set
         const internalDatabaseMock = [
             { lga_name: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 4, deficit: "[Rain + No Street Lights]" },
             { lga_name: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 3, deficit: "[Wet Surf. + High Speed]" },
