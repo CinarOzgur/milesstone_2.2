@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>VIC Safety Hub - Entegre Sistem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 font-sans">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+
+        <!-- LEVEL 1: STRATEJİK ÖZET (DOM Değişkenleri Bağlı) -->
+        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-purple-400 font-bold mb-3">LEVEL 1: STRATEGIC SUMMARY (Case Baselines)</h2>
+            <div class="grid grid-cols-3 gap-4 text-center">
+                <div class="p-3 bg-gray-900 rounded border border-gray-700">
+                    <div id="metric-fatalities" class="text-xl font-bold text-rose-400">+13% Surge</div>
+                    <div class="text-xs text-gray-400">Regional Fatalities</div>
+                </div>
+                <div class="p-3 bg-gray-900 rounded border border-gray-700">
+                    <div id="metric-distraction" class="text-xl font-bold text-amber-400">16% Link</div>
+                    <div class="text-xs text-gray-400">Smartphone Distraction</div>
+                </div>
+                <div class="p-3 bg-gray-900 rounded border border-gray-700">
+                    <div id="metric-violations" class="text-xl font-bold text-blue-400">2/3 Cases</div>
+                    <div class="text-xs text-gray-400">Single Rule Violations</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL 2: İNTERAKTİF FİLTRE PANELİ (Inputs) -->
+        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-blue-400 font-bold mb-3">LEVEL 2: INTERACTIVE FILTER PANEL</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Weather</label>
+                    <select id="ui-weather" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                        <option value="Raining">Raining</option>
+                        <option value="Clear">Clear</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Light</label>
+                    <select id="ui-light" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                        <option value="Dark">Dark</option>
+                        <option value="Daylight">Daylight</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Severity</label>
+                    <select id="ui-severity" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm">
+                        <option value="Severe/Fatal">Severe/Fatal</option>
+                        <option value="Minor">Minor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+                <!-- Buton JavaScript fonksiyonunu tetikler -->
+                <button onclick="fetchAnomalyData()" class="bg-amber-500 text-gray-900 text-xs font-bold py-2 px-4 rounded hover:bg-amber-600 uppercase">
+                    ⚡ FILTER ANOMALIES
+                </button>
+            </div>
+        </section>
+
+        <!-- LEVEL 3: TÜRETİLMİŞ ANOMALİ SONUÇLARI (Dinamik Tablo) -->
+        <section class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+            <h2 class="text-xs text-emerald-400 font-bold mb-3">LEVEL 3: DERIVED ANOMALY RESULTS</h2>
+            <table class="w-full text-left text-sm">
+                <thead>
+                    <tr class="border-b border-gray-700 text-xs text-gray-400 uppercase">
+                        <th class="p-2">Rank</th>
+                        <th class="p-2">LGA</th>
+                        <th class="p-2 text-center">Crash Count</th>
+                        <th class="p-2">Infrastructure Deficit</th>
+                        <th class="p-2 text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="dynamic-rows">
+                    <!-- JavaScript burayı dolduracak -->
+                </tbody>
+            </table>
+            <div class="mt-4 text-right text-xs text-gray-400">
+                Active Records: <span id="active-count" class="text-blue-400 font-bold">0</span> Regional Anomalies
+            </div>
+        </section>
+
+    </div>
+
+    <!-- MANTIK KÖPRÜSÜ (JavaScript) -->
+    <script>
+        // Veritabanından (API) gelen cevabı simüle eden Mock Data yapısı
+        const databaseMock = [
+            { lga: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 4, deficit: "[Rain + No Street Lights]" },
+            { lga: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 3, deficit: "[Wet Surf. + High Speed]" },
+            { lga: "Southeast Melbourne", weather: "Raining", light: "Dark", severity: "Severe/Fatal", count: 1, deficit: "[No Structural Flaws]" },
+            { lga: "Mildura", weather: "Clear", light: "Daylight", severity: "Minor", count: 0, deficit: "[Optimal]" }
+        ];
+
+        function fetchAnomalyData() {
+            // 1. Level 2'deki girdi değerlerini yakala
+            const selectedWeather = document.getElementById('ui-weather').value;
+            const selectedLight = document.getElementById('ui-light').value;
+            const selectedSeverity = document.getElementById('ui-severity').value;
+
+            // 2. Veriyi filtrele (SQL WHERE mantığı)
+            const filteredData = databaseMock.filter(item => 
+                item.weather === selectedWeather && 
+                item.light === selectedLight && 
+                item.severity === selectedSeverity
+            );
+
+            // 3. Tabloyu Temizle ve Yeniden İnşa Et (Level 3)
+            const tbody = document.getElementById('dynamic-rows');
+            tbody.innerHTML = ""; 
+
+            let anomaliesAboveBaseline = 0;
+            let rank = 1;
+
+            // Çizginin üstü (Eşiği aşanlar > 2) ve altı için iki aşamalı döngü
+            const aboveThreshold = filteredData.filter(d => d.count > 2).sort((a,b) => b.count - a.count);
+            const belowThreshold = filteredData.filter(d => d.count <= 2);
+
+            // Üst kısımları yazdır
+            aboveThreshold.forEach(item => {
+                anomaliesAboveBaseline++;
+                const statusBadge = item.count >= 4 ? 
+                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-xs px-2 py-0.5 rounded font-bold">🚨 CRITICAL</span>` : 
+                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs px-2 py-0.5 rounded font-bold">⚠️ WARNING</span>`;
+
+                tbody.innerHTML += `
+                    <tr class="border-b border-gray-800">
+                        <td class="p-2 font-mono text-gray-400">#0${rank++}</td>
+                        <td class="p-2">${item.lga}</td>
+                        <td class="p-2 text-center text-rose-400 font-bold">${item.count}</td>
+                        <td class="p-2 text-gray-300">${item.deficit}</td>
+                        <td class="p-2 text-center">${statusBadge}</td>
+                    </tr>
+                `;
+            });
+
+            // GÖRSELDEKİ EŞİK ÇİZGİSİNİ KODLA EKLE (Crash Threshold Line)
+            if(filteredData.length > 0) {
+                tbody.innerHTML += `
+                    <tr class="bg-gray-800/80 border-y border-dashed border-rose-500/50">
+                        <td colspan="5" class="p-2 text-xs font-bold text-rose-400">
+                            🔴 Crash Threshold Line (Macro State Baseline Average: 2.0)
+                        </td>
+                    </tr>
+                `;
+            }
+
+            // Alt kısımları yazdır (Safe Alanı)
+            belowThreshold.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="p-2 font-mono text-gray-500">--</td>
+                        <td class="p-2 text-gray-400">${item.lga}</td>
+                        <td class="p-2 text-center text-gray-400">${item.count}</td>
+                        <td class="p-2 text-gray-500">${item.deficit}</td>
+                        <td class="p-2 text-center">
+                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded font-bold">✅ SAFE</span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            // 4. İstatistikleri ve Level 1'i güncelle
+            document.getElementById('active-count').innerText = anomaliesAboveBaseline;
+            
+            if(anomaliesAboveBaseline > 0) {
+                document.getElementById('metric-fatalities').innerText = `+${10 + anomaliesAboveBaseline}% Surge`;
+            } else {
+                document.getElementById('metric-fatalities').innerText = `0% Change`;
+            }
+        }
+
+        // Sayfa ilk açıldığında fonksiyonu bir kere çalıştır
+        window.onload = fetchAnomalyData;
+    </script>
+</body>
+</html>
