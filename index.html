@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIC Safety Hub - Environmental Factors</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icon Set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
@@ -14,42 +16,55 @@
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col tracking-wide selection:bg-amber-500 selection:text-gray-900">
 
+    <!-- 1. TOP NAVIGATION BAR & USER AREA -->
     <nav class="bg-gray-900 border-b border-gray-800 px-8 py-0 sticky top-0 z-50 backdrop-blur-md bg-opacity-90 font-mono">
         <div class="max-w-5xl mx-auto flex justify-between items-center h-16">
             
-            <div class="flex items-center space-x-16 text-sm tracking-[0.15em]">
-                <span class="text-blue-400 font-bold flex items-center gap-3">
-                    [ <i class="fa-solid fa-shield-halved text-xs"></i> VIC SAFETY HUB ]
+            <!-- Left Side: Navigation Links & Brand -->
+            <div class="flex items-center space-x-12 text-sm tracking-[0.15em]">
+                <!-- Brand Logo -->
+                <span class="text-blue-400 font-bold flex items-center gap-2 mr-4">
+                    <i class="fa-solid fa-shield-halved text-xs"></i> VIC SAFETY HUB
                 </span>
-                <div class="hidden md:flex items-center space-x-12 text-gray-400">
-                    <a href="#" class="hover:text-white uppercase transition duration-150">Home</a>
+                
+                <!-- Pure Text Menu Links (No Brackets) -->
+                <div id="nav-links" class="hidden md:flex items-center space-x-8 text-gray-400">
+                    <!-- HOME MENU ITEM -->
                     <div class="relative flex flex-col justify-center h-16">
-                        <a href="#" class="text-blue-400 font-bold uppercase">[ANALYSIS (ACTIVE)]</a>
-                        <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-blue-500"></div>
+                        <a href="#" onclick="switchMenu(this, 'HOME')" class="hover:text-white uppercase transition duration-150">Home</a>
                     </div>
-                    <a href="#" class="hover:text-white uppercase transition duration-150">Settings</a>
+                    <!-- ANALYSIS (DEFAULT ACTIVE) MENU ITEM -->
+                    <div class="relative flex flex-col justify-center h-16">
+                        <a href="#" onclick="switchMenu(this, 'ANALYSIS')" class="text-blue-400 font-bold uppercase">Analysis</a>
+                    </div>
+                    <!-- SETTINGS MENU ITEM -->
+                    <div class="relative flex flex-col justify-center h-16">
+                        <a href="#" onclick="switchMenu(this, 'SETTINGS')" class="hover:text-white uppercase transition duration-150">Settings</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Right Side: User Profile Area -->
             <div class="flex items-center space-x-4 text-xs tracking-wider">
                 <i class="fa-solid fa-triangle-exclamation text-amber-500 animate-bounce"></i>
                 <i class="fa-solid fa-envelope text-purple-400"></i>
-                <span class="text-gray-300 flex items-center gap-1.5">
-                    James (Engineer)
-                </span>
+                <span class="text-gray-300 flex items-center gap-1.5"> James (Engineer) </span>
                 <span class="text-gray-700">|</span>
                 <a href="#" class="text-gray-500 hover:text-rose-400 transition"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </nav>
 
+    <!-- MAIN BODY CONTAINER -->
     <main class="max-w-5xl mx-auto p-4 md:p-6 space-y-6 flex-1 w-full">
         
+        <!-- Dashboard Breadcrumbs -->
         <div class="text-[11px] font-mono text-gray-500 flex items-center gap-2 uppercase tracking-wider">
             <i class="fa-solid fa-thumbtack text-rose-500 text-xs"></i>
-            <span>Dashboard</span> <span class="text-gray-700">&gt;</span> <span>Analytics</span> <span class="text-gray-700">&gt;</span> <span class="text-gray-300 font-bold">Environmental Factors</span>
+            <span>Dashboard</span> <span class="text-gray-700">&gt;</span> <span>Analytics</span> <span class="text-gray-700">&gt;</span> <span id="breadcrumb-current" class="text-gray-300 font-bold">Environmental Factors</span>
         </div>
 
+        <!-- LEVEL 1: STRATEGIC SUMMARY (Case Baselines) -->
         <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-purple-500">
             <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-regular fa-file-lines"></i> LEVEL 1: STRATEGIC SUMMARY (Case Baselines)
@@ -70,7 +85,8 @@
             </div>
         </section>
 
-        <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-blue-500">
+        <!-- LEVEL 2: INTERACTIVE FILTER PANEL -->
+        <section id="filter-section" class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-blue-500">
             <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-solid fa-magnifying-glass text-xs"></i> LEVEL 2: INTERACTIVE FILTER PANEL (User Control & Freedom)
             </h2>
@@ -78,53 +94,54 @@
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">📍 LGA:</label>
                     <select id="filter-lga" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="all">[All Victoria]</option>
+                        <option value="all">All Victoria</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">🌧️ Weather:</label>
                     <select id="filter-weather" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="Raining">[Raining]</option>
-                        <option value="Clear">[Clear]</option>
+                        <option value="Raining">Raining</option>
+                        <option value="Clear">Clear</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">🗺️ Surface:</label>
                     <select id="filter-surface" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="Wet">[Wet]</option>
-                        <option value="Dry">[Dry]</option>
+                        <option value="Wet">Wet</option>
+                        <option value="Dry">Dry</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">💡 Light:</label>
                     <select id="filter-light" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="Dark">[Dark]</option>
-                        <option value="Daylight">[Daylight]</option>
+                        <option value="Dark">Dark</option>
+                        <option value="Daylight">Daylight</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">👥 Age Group:</label>
                     <select id="filter-age" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="15-24">[15-24]</option>
-                        <option value="25-64">[25-64]</option>
+                        <option value="15-24">15-24</option>
+                        <option value="25-64">25-64</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-400 mb-1.5 font-medium">⚠️ Severity:</label>
                     <select id="filter-severity" class="w-full bg-gray-950 border border-gray-800 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 font-mono">
-                        <option value="Severe/Fatal">[Severe/Fatal]</option>
-                        <option value="Minor">[Minor Injury]</option>
+                        <option value="Severe/Fatal">Severe / Fatal</option>
+                        <option value="Minor">Minor Injury</option>
                     </select>
                 </div>
             </div>
             <div class="mt-5 flex justify-end">
-                <button onclick="runDynamicFilter()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 text-xs font-bold py-2.5 px-5 rounded flex items-center gap-2 tracking-widest transition duration-150 uppercase font-mono">
-                    [ <i class="fa-solid fa-bolt-lightning text-[10px]"></i> FILTER ANOMALIES ]
+                <button onclick="runDynamicFilter()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 text-xs font-bold py-2.5 px-5 rounded flex items-center gap-2 tracking-widest transition duration-150 uppercase font-mono shadow-md">
+                    <i class="fa-solid fa-bolt-lightning text-[10px]"></i> FILTER ANOMALIES
                 </button>
             </div>
         </section>
 
-        <section class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-emerald-500">
+        <!-- LEVEL 3: DERIVED ANOMALY RESULTS (RESTORED & CORRECTED) -->
+        <section id="results-section" class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-emerald-500">
             <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4 flex items-center gap-2 font-mono">
                 <i class="fa-solid fa-chart-simple"></i> LEVEL 3: DERIVED ANOMALY RESULTS (Locations Exceeding Baseline)
             </h2>
@@ -136,20 +153,22 @@
                             <th class="py-3 px-4">Rank</th>
                             <th class="py-3 px-4">Local Government Area</th>
                             <th class="py-3 px-4 text-center">Crash Count</th>
-                            <th class="p-3">Infrastructure Deficit</th>
+                            <th class="py-3 px-4">Infrastructure Deficit</th>
                             <th class="py-3 px-4 text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody id="table-rows" class="divide-y divide-gray-800/40">
-                        </tbody>
+                        <!-- Data will be dynamically rendered here via JavaScript -->
+                    </tbody>
                 </table>
             </div>
 
+            <!-- PAGINATION AREA -->
             <div class="mt-5 pt-4 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-400">
                 <div class="flex items-center space-x-1.5">
                     <span class="text-gray-500 mr-1">Pages:</span>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white disabled:opacity-30" disabled>&laquo; Prev</button>
-                    <button class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/40 text-blue-400 rounded font-bold">(01)</button>
+                    <button class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/40 text-blue-400 rounded font-bold">01</button>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white transition">02</button>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white transition">03</button>
                     <button class="px-2 py-0.5 bg-gray-950 border border-gray-800 rounded hover:text-white transition">Next &raquo;</button>
@@ -161,6 +180,7 @@
         </section>
     </main>
 
+    <!-- FOOTER AREA -->
     <footer class="bg-gray-950 border-t border-gray-900 py-4 text-center text-[11px] font-mono text-gray-500 mt-auto">
         <div class="max-w-5xl mx-auto flex justify-center items-center gap-2">
             <i class="fa-regular fa-file-code text-gray-700"></i>
@@ -168,38 +188,65 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE ENGINE & DATA LAYER -->
     <script>
+        // Clean Navigation Routing Matrix
+        function switchMenu(clickedElement, menuName) {
+            const linksContainer = document.getElementById('nav-links');
+            const navLinks = linksContainer.querySelectorAll('a');
+
+            navLinks.forEach(link => {
+                link.className = "hover:text-white uppercase transition duration-150";
+            });
+
+            clickedElement.className = "text-blue-400 font-bold uppercase";
+
+            const breadcrumb = document.getElementById('breadcrumb-current');
+            if(menuName === 'HOME') {
+                breadcrumb.innerText = "System Overview";
+            } else if (menuName === 'SETTINGS') {
+                breadcrumb.innerText = "Control Matrix Configurations";
+            } else {
+                breadcrumb.innerText = "Environmental Factors";
+            }
+        }
+
+        // Core Database Engine (Completely bracket-free data mappings)
         const internalDatabaseMock = [
-            { lga_name: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 4, deficit: "[Rain + No Street Lights]" },
-            { lga_name: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 3, deficit: "[Wet Surf. + High Speed]" },
-            { lga_name: "Southeast Melbourne", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 1, deficit: "[No Structural Flaws]" },
-            { lga_name: "Melbourne CBD", weather: "Clear", light: "Daylight", severity: "Minor", crash_count: 0, deficit: "[Optimal]" },
-            { lga_name: "Frankston City", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 5, deficit: "[Blackspot + Poor Visibility]" }
+            { lga_name: "Yarra Ranges", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 4, deficit: "Rain + No Street Lights" },
+            { lga_name: "Greater Geelong", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 3, deficit: "Wet Surf. + High Speed" },
+            { lga_name: "Southeast Melbourne", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 1, deficit: "No Structural Flaws" },
+            { lga_name: "Melbourne CBD", weather: "Clear", light: "Daylight", severity: "Minor", crash_count: 0, deficit: "Optimal Conditions" },
+            { lga_name: "Frankston City", weather: "Raining", light: "Dark", severity: "Severe/Fatal", crash_count: 5, deficit: "Blackspot + Poor Visibility" }
         ];
 
+        // Rendering Function
         function runDynamicFilter() {
             const activeWeather = document.getElementById('filter-weather').value;
             const activeLight = document.getElementById('filter-light').value;
             const activeSeverity = document.getElementById('filter-severity').value;
             const tbody = document.getElementById('table-rows');
             
+            // Clean table container safely
             tbody.innerHTML = ""; 
 
+            // Filter process logic
             const matchData = internalDatabaseMock.filter(item => 
                 item.weather === activeWeather && 
                 item.light === activeLight && 
                 item.severity === activeSeverity
             );
 
-            const highRisk = matchData.filter(d => d.crash_count > 2.0).sort((a,b) => b.crash_count - a.crash_count);
-            const lowRisk = matchData.filter(d => d.crash_count <= 2.0);
+            const highRisk = matchData.filter(d => d.crash_count > 2).sort((a,b) => b.crash_count - a.crash_count);
+            const lowRisk = matchData.filter(d => d.crash_count <= 2);
 
             let rankIndex = 1;
 
+            // 1. Render High Risk Elements
             highRisk.forEach(row => {
                 const statusHtml = row.crash_count >= 4 ? 
-                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">🚨 CRITICAL</span>` : 
-                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">⚠️ WARNING</span>`;
+                    `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">CRITICAL</span>` : 
+                    `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2 py-0.5 rounded font-mono">WARNING</span>`;
 
                 tbody.innerHTML += `
                     <tr class="hover:bg-gray-800/20 transition duration-150">
@@ -212,17 +259,19 @@
                 `;
             });
 
+            // 2. Threshold Divider Line (Bracket-free)
             if(matchData.length > 0) {
                 tbody.innerHTML += `
                     <tr class="bg-gray-950 border-y border-dashed border-rose-500/40">
                         <td colspan="5" class="py-2.5 px-4 text-[11px] font-mono font-bold text-rose-400">
                             <span class="inline-block w-2 h-2 bg-rose-500 rounded-full mr-1 animate-pulse"></span>
-                            Crash Threshold Line (Macro State Baseline Average: 2.0)
+                            Crash Threshold Line - Macro State Baseline Average: 2.0
                         </td>
                     </tr>
                 `;
             }
 
+            // 3. Render Low Risk Elements
             lowRisk.forEach(row => {
                 tbody.innerHTML += `
                     <tr class="hover:bg-gray-800/20 transition duration-150">
@@ -231,16 +280,18 @@
                         <td class="py-3 px-4 text-center font-mono text-gray-500">${row.crash_count}</td>
                         <td class="py-3 px-4 text-gray-600 font-mono text-xs">${row.deficit}</td>
                         <td class="py-3 px-4 text-center">
-                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/10 text-[10px] font-bold px-2 py-0.5 rounded font-mono">✅ SAFE</span>
+                            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/10 text-[10px] font-bold px-2 py-0.5 rounded font-mono">SAFE</span>
                         </td>
                     </tr>
                 `;
             });
 
+            // Update Dynamic Counter Badges
             document.getElementById('anomaly-badge-count').innerText = highRisk.length;
             document.getElementById('m-fatalities').innerText = highRisk.length > 0 ? `+${11 + highRisk.length}% Surge` : '0% Change';
         }
 
+        // Automatic run setup on view initialization
         window.onload = runDynamicFilter;
     </script>
 </body>
